@@ -1,13 +1,13 @@
 import asyncio
 
 from aiogram.utils.callback_answer import CallbackAnswerMiddleware
+from loguru import logger
+
 from core.data import BotConfig
 from handlers import callbacks, messages
 from loader import bot, dispatcher
-from loguru import logger
 from utils.logging import set_basic_logger
 from utils.set_default import set_default_commands
-
 
 dispatcher.include_router(router=messages.ca.router)
 

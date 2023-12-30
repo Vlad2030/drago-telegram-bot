@@ -1,8 +1,9 @@
 from aiogram import Router, types
 from aiogram.filters import Command
 from aiogram.utils.markdown import hcode
-from utils import log_info, request
+
 from core.data.config import BotConfig
+from utils import log_info
 
 router = Router(name="ca")
 
