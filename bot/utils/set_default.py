@@ -8,14 +8,7 @@ async def set_default_commands() -> None:
     return await bot(
         SetMyCommands(
             commands=[
-                commands.start(),
-                commands.menu(),
-                commands.sniper(),
-                commands.status(),
-                commands.profile_stats(),
-                commands.order_stats(),
-                commands.about(),
-                commands.help(),
+                commands.ca(),
             ],
         ),
     )
