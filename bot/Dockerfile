@@ -1,14 +1,12 @@
 FROM python:3.11-slim
 
-COPY . /sniper-bot
+COPY . /drago-bot
 # COPY .env /sniper-bot
 
-WORKDIR /sniper-bot/
+WORKDIR /drago-bot/
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV TELEGRAM_BOT_TOKEN None
-ENV BOT_SKIP_UPDATE True
-ENV BACKEND_HOST 0.0.0.0
-ENV BACKEND_PORT 8001
+ENV DRAGO_CONTRACT_ADDRESS 5D9LBmEeWjKXZs8JRaP8YdBDdkdQPwu9mATXTcMUq7YU
 
 RUN pip install -r requirements.txt
