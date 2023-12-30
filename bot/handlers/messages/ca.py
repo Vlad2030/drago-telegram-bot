@@ -11,7 +11,7 @@ router = Router(name="ca")
 @router.message(Command("ca"))
 async def ca_message(message: types.Message) -> types.Message:
     log_info.handler(__name__, type=message)
-    return await message.answer(
+    return await message.reply(
         text=f"$DRAGO contract address - {hcode(BotConfig.DRAGO_CONTRACT_ADDRESS)} "
              "(click to copy)"
     )
