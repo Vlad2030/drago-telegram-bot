@@ -10,6 +10,8 @@ from utils.logging import set_basic_logger
 from utils.set_default import set_default_commands
 
 dispatcher.include_router(router=messages.ca.router)
+dispatcher.include_router(router=messages.info.router)
+dispatcher.include_router(router=messages.price.router)
 
 
 async def main() -> None:
