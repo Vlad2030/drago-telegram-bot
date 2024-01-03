@@ -10,6 +10,8 @@ async def set_default_commands() -> None:
         SetMyCommands(
             commands=[
                 commands.ca(),
+                commands.info(),
+                commands.price(),
             ],
         ),
     )

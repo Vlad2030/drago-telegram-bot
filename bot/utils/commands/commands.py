@@ -13,3 +13,14 @@ class Commands(types.BotCommand):
             description="Contract address",
         )
 
+    def info(self) -> types.BotCommand:
+        return types.BotCommand(
+            command="info",
+            description="Info",
+        )
+
+    def price(self) -> types.BotCommand:
+        return types.BotCommand(
+            command="price",
+            description="Price",
+        )
