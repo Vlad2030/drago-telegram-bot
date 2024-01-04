@@ -12,6 +12,7 @@ from utils.set_default import set_default_commands
 dispatcher.include_router(router=messages.ca.router)
 dispatcher.include_router(router=messages.info.router)
 dispatcher.include_router(router=messages.price.router)
+dispatcher.include_router(router=messages.new_post.router)
 
 
 async def main() -> None:
