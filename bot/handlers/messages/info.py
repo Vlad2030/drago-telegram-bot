@@ -35,7 +35,7 @@ async def info_message(message: types.Message) -> types.Message:
              f"5m: <code>{beatifier(token_info.volume.m5)}$</code>\n"
              f"1h: <code>{beatifier(token_info.volume.h1)}$</code>\n"
              f"6h: <code>{beatifier(token_info.volume.h6)}$</code>\n"
-             f"24h: <code>{beatifier(token_info.volume.h24)}$<code>\n\n"
+             f"24h: <code>{beatifier(token_info.volume.h24)}$</code>\n\n"
 
              f"CA: <code>{token_info.baseToken.address}</code>\n\n"
 
