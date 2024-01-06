@@ -6,7 +6,7 @@ from keyboards.inline import InlineKeyboards
 router = Router(name="new_post")
 
 
-@router.message()
+@router.channel_post()
 async def info_message(
         channel_post: types.Message,
         inline_keyboard = InlineKeyboards(),
@@ -16,7 +16,7 @@ async def info_message(
         chat_lang = "RU"
     elif channel_post.sender_chat.id == int(BotConfig.DRAGO_TELEGRAM_CHANNEL_ID_EN):
         chat_lang = "EN"
-    print(channel_post.sender_chat.id, chat_lang)
+
     if chat_lang is not None:
         welcome_message_text = (
             "🐲🐲🐲 Дракончики,\n"
