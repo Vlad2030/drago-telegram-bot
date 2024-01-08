@@ -3,6 +3,7 @@ from aiogram.filters import Command
 
 from core.data.config import BotConfig
 from keyboards.inline import InlineKeyboards
+from utils import log_info
 
 router = Router(name="links")
 
@@ -12,6 +13,7 @@ async def info_message(
         message: types.Message,
         inline_keyboard = InlineKeyboards(),
 ) -> types.Message:
+    log_info.handler(__name__, type=message)
     chat_lang = None
     if message.chat.id == int(BotConfig.DRAGO_TELEGRAM_CHAT_ID_RU):
         chat_lang = "RU"
