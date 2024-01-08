@@ -13,9 +13,9 @@ async def info_message(
         inline_keyboard = InlineKeyboards(),
 ) -> types.Message:
     chat_lang = None
-    if message.sender_chat.id == int(BotConfig.DRAGO_TELEGRAM_CHANNEL_ID_RU):
+    if message.chat.id == int(BotConfig.DRAGO_TELEGRAM_CHAT_ID_RU):
         chat_lang = "RU"
-    elif message.sender_chat.id == int(BotConfig.DRAGO_TELEGRAM_CHANNEL_ID_EN):
+    elif message.chat.id == int(BotConfig.DRAGO_TELEGRAM_CHAT_ID_EN):
         chat_lang = "EN"
 
     if chat_lang is not None:
