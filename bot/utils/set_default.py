@@ -12,6 +12,8 @@ async def set_default_commands() -> None:
                 commands.ca(),
                 commands.info(),
                 commands.price(),
+                commands.website(),
+                commands.links(),
             ],
         ),
     )

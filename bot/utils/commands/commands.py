@@ -10,17 +10,29 @@ class Commands(types.BotCommand):
     def ca(self) -> types.BotCommand:
         return types.BotCommand(
             command="ca",
-            description="Contract address",
+            description="$DRAGO contract address",
         )
 
     def info(self) -> types.BotCommand:
         return types.BotCommand(
             command="info",
-            description="Info",
+            description="$DRAGO info",
         )
 
     def price(self) -> types.BotCommand:
         return types.BotCommand(
             command="price",
-            description="Price",
+            description="$DRAGO price",
+        )
+
+    def website(self) -> types.BotCommand:
+        return types.BotCommand(
+            command="website",
+            description="$DRAGO website",
+        )
+
+    def links(self) -> types.BotCommand:
+        return types.BotCommand(
+            command="links",
+            description="$DRAGO links",
         )
