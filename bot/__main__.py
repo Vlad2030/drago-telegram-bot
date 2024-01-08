@@ -13,6 +13,8 @@ dispatcher.include_router(router=messages.ca.router)
 dispatcher.include_router(router=messages.info.router)
 dispatcher.include_router(router=messages.price.router)
 dispatcher.include_router(router=messages.new_post.router)
+dispatcher.include_router(router=messages.website.router)
+dispatcher.include_router(router=messages.links.router)
 
 
 async def main() -> None:
