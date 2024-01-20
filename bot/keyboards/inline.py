@@ -1,6 +1,8 @@
 from aiogram import types
 from aiogram.utils import keyboard
 
+from models.exchanges_info import ExchangesInfoDatabase
+
 
 class InlineKeyboards:
     def __init__(self) -> None:
@@ -37,6 +39,12 @@ class InlineKeyboards:
             ],
             [
                 self.button(
+                    text="цена $DRAGO каждую минуту" if lang == "RU" else "$DRAGO price every minute",
+                    url="https://t.me/drago_price",
+                ),
+            ],
+            [
+                self.button(
                     text="Raydium",
                     url="https://raydium.io/swap/?inputCurrency=sol&outputCurrency=5D9LBmEeWjKXZs8JRaP8YdBDdkdQPwu9mATXTcMUq7YU",
                 ),
@@ -46,4 +54,28 @@ class InlineKeyboards:
                 self.button(text="Birdeye", url="https://birdeye.so/token/GD6sCpWTmhmCPHZkza1a7JLNcqER3tuBnY3jqsHzL6v2?chain=solana"),
             ],
         ]
+        return self.keyboard(inline_keyboard=buttons)
+
+    def ad(self, lang: str = "RU") -> types.InlineKeyboardMarkup:
+        buttons = [
+            [
+                self.button(
+                    text="цена $DRAGO каждую минуту" if lang == "RU" else "$DRAGO price every minute",
+                    url="https://t.me/drago_price",
+                ),
+            ],
+        ]
+        return self.keyboard(inline_keyboard=buttons)
+
+    def exchanges(
+            self,
+            exchanges: list[ExchangesInfoDatabase],
+    ) -> types.InlineKeyboardMarkup:
+        buttons = []
+        for exchange in exchanges:
+            buttons.append([self.button(text=exchange.name, url=exchange.link)])
+        buttons.append([self.button(
+            text="$DRAGO price every minute",
+            url="https://t.me/drago_price",
+        )])
         return self.keyboard(inline_keyboard=buttons)
