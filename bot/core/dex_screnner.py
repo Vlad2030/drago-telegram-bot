@@ -1,5 +1,5 @@
-from core.http_async import HttpAsync, ApiResponse
-from schemas.dex_screnner import Tokens, Token
+from core.http_async import ApiResponse, HttpAsync
+from schemas.dex_screnner import Token, Tokens
 
 
 class DexScrenner(HttpAsync):

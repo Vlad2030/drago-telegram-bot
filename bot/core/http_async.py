@@ -1,7 +1,8 @@
-import orjson
 import aiohttp
-from core.data.config import BotConfig
+import orjson
 from pydantic import BaseModel
+
+from core.data.config import BotConfig
 
 
 class ApiResponse(BaseModel):
