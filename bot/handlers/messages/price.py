@@ -1,23 +1,36 @@
 from aiogram import Router, types
 from aiogram.filters import Command
+from sqlalchemy.ext.asyncio import AsyncSession
 
+from core.crud.exchanges import ExchangesInfoCRUD
 from core.data.config import BotConfig
-from core.dex_screnner import DexScrenner
+from keyboards.inline import InlineKeyboards
 from utils import log_info
 
 router = Router(name="price")
 
 
 @router.message(Command("price"))
-async def price_message(message: types.Message) -> types.Message:
+async def price_message(
+        message: types.Message,
+        session: AsyncSession,
+        inline_keyboard=InlineKeyboards(),
+) -> types.Message:
     log_info.handler(__name__, type=message)
-    dex_screnner = DexScrenner()
-    token_info = (await dex_screnner.tokens(
-        ca=BotConfig.DRAGO_CONTRACT_ADDRESS,
-    )).pairs[0]
-    return await message.reply(
-        text=f"🐲 ${token_info.baseToken.symbol}\n\n"
 
-             f"Price: <code>{token_info.priceUsd}$ ({token_info.priceNative} SOL)</code>\n\n",
-        disable_web_page_preview=True,
+    chat_lang = "EN"
+
+    if message.chat.id == int(BotConfig.DRAGO_TELEGRAM_CHAT_ID_RU):
+        chat_lang = "RU"
+
+    exchanges_info = ExchangesInfoCRUD(session)
+    exchanges = await exchanges_info.get_all()
+    await session.close()
+
+    price_text = "\n".join([f"{exchange.name}: <code>{exchange.price}$ ({exchange.price_change}%)</code>" for exchange in exchanges])
+
+    return await message.reply(
+        text=f"🐲 $DRAGO\n\n"
+             f"{price_text}",
+        reply_markup=inline_keyboard.ad(chat_lang)
     )
