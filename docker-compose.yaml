@@ -1,12 +1,35 @@
 version: '3.8'
 
-
 services:
-
   bot:
     container_name: ${TELEGRAM_CONTAINER_NAME}
     build: ./bot
     command: python ./__main__.py
+    depends_on:
+      - database
     env_file:
       - .env
     restart: always
+
+  price-worker:
+    container_name: price_worker
+    build: ./bot
+    command: python ./price_update.py
+    depends_on:
+      - database
+    env_file:
+      - .env
+    restart: always
+
+  database:
+    container_name: ${POSTGRES_CONTAINER_NAME}
+    image: postgres:15
+    env_file:
+      - .env
+    ports:
+      - ${POSTGRES_CONTAINER_PORT}
+    volumes:
+      - postgres:/data/postgres
+
+volumes:
+    postgres:
