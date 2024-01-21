@@ -62,7 +62,7 @@ class InlineKeyboards:
             [
                 self.button(
                     text="цена $DRAGO каждую минуту" if lang == "RU" else "$DRAGO price every minute",
-                    url="https://t.me/drago_price",
+                    url="https://t.me/+SHVYuSZILjM0NGJl",
                 ),
             ],
         ]
