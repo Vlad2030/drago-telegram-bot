@@ -57,8 +57,8 @@ async def update_prices() -> None:
         worst_price = (mexc_price if mexc_price <= dex_price else dex_price)
 
         total_info_old = await total_info.get()
-        total_ath = best_price if best_price >= total_info_old.total_ath else total_info_old.total_ath
-        total_atl = worst_price if worst_price <= total_info_old.total_atl else total_info_old.total_atl
+        total_ath = best_price if best_price > total_info_old.total_ath else total_info_old.total_ath
+        total_atl = worst_price if worst_price < total_info_old.total_atl else total_info_old.total_atl
 
         await total_info.update(
             total=TotalInfo(
