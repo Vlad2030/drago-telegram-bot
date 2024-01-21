@@ -9,7 +9,7 @@ class MEXC(HttpAsync):
     async def ticker_24h(self, pair: str = "DRAGOUSDT") -> PairInfo:
         raw_ticker_24h = await self.request(
             method="GET",
-            endpoint=f"api/v3/ticker/24hr/",
+            endpoint=f"/api/v3/ticker/24hr/",
             params={"symbol": pair.upper()},
         )
         if raw_ticker_24h.status_code == 200:
