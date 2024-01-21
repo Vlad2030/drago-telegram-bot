@@ -5,6 +5,8 @@ services:
     container_name: ${TELEGRAM_CONTAINER_NAME}
     build: ./bot
     command: python ./__main__.py
+    networks:
+      - database-network
     depends_on:
       - database
     env_file:
@@ -12,9 +14,11 @@ services:
     restart: always
 
   price-worker:
-    container_name: price_worker
+    container_name: price-worker
     build: ./bot
     command: python ./price_update.py
+    networks:
+      - database-network
     depends_on:
       - database
     env_file:
@@ -27,9 +31,16 @@ services:
     env_file:
       - .env
     ports:
-      - ${POSTGRES_CONTAINER_PORT}
+      - ${POSTGRES_CONTAINER_PORT}:${POSTGRES_CONTAINER_PORT}
+    networks:
+      - database-network
     volumes:
       - postgres:/data/postgres
+
+networks:
+  database-network:
+    name: database-network
+    driver: bridge
 
 volumes:
     postgres:
