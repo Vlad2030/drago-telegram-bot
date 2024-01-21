@@ -1,9 +1,10 @@
-from data.config import DatabaseConfig
 from sqlalchemy import MetaData
 from sqlalchemy.ext.asyncio import (AsyncEngine, AsyncSession,
                                     create_async_engine)
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+
+from core.data.config import DatabaseConfig
 
 DATABASE_URL = (f"postgresql+asyncpg://"
                 f"{DatabaseConfig.DATABASE_USER}:{DatabaseConfig.DATABASE_PASSWORD}"
@@ -21,4 +22,4 @@ async def async_create_all() -> None:
 
 async def get_async_session() -> AsyncSession:
     async with async_session() as session:
-        yield session
+        return session
