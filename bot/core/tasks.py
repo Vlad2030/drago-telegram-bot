@@ -24,7 +24,7 @@ async def update_prices() -> None:
 
         await exchanges_info.update(
             exchange=ExchangesInfo(
-                name="Dex Screnner",
+                name="DEX Screener",
                 link="https://dexscreener.com/solana/gd6scpwtmhmcphzkza1a7jlncqer3tubny3jqshzl6v2",
                 price=dex_price,
                 price_change=dex_screnner_info.pairs[0].priceChange.h24,
@@ -43,7 +43,7 @@ async def update_prices() -> None:
                 name="MEXC",
                 link="https://www.mexc.com/exchange/DRAGO_USDT",
                 price=mexc_price,
-                price_change=float(mexc_info.price_change_percent),
+                price_change=float(mexc_info.price_change_percent) * 100,
                 price_h24_high=float(mexc_info.high_price),
                 price_h24_low=float(mexc_info.low_price),
                 h24_volume=float(mexc_info.volume),
