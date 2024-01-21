@@ -25,21 +25,19 @@ async def info_message(
     exchanges = await exchanges_info.get_all()
     total = await total_info.get()
 
-    await session.close()
-
-    price_text = "\n".join([f"{exchange.name}: <code>{exchange.price}$ ({exchange.price_change}%)</code>" for exchange in exchanges])
+    price_text = "\n".join([f"{exchange.name}: <code>{exchange.price}$ ({'+' if exchange.price_change >= 0 else ''}{exchange.price_change:.2f}%)</code>" for exchange in exchanges])
     message_text = (
         f"{price_text}\n\n"
         
         f"24h Total Volume: <code>{beatifier(total.total_h24_volume_quote)}$ ({beatifier(total.total_h24_volume)} DRAGO)</code>\n"
-        f"24h Change: <code>{beatifier(total.price_change)}%</code>\n"
-        f"24h High: <code>{beatifier(total.total_h24_high)}$</code>\n"
-        f"24h Low: <code>{beatifier(total.total_h24_low)}$</code>\n"
-        f"All Time High: <code>{beatifier(total.total_ath)}$</code>\n"
-        f"All Time Low: <code>{beatifier(total.total_atl)}$</code>"
+        f"24h Change: <code>{'+' if total.price_change >= 0 else ''}{total.price_change:.2f}%</code>\n"
+        f"24h High: <code>{total.total_h24_high:.4f}$</code>\n"
+        f"24h Low: <code>{total.total_h24_low:.4f}$</code>\n"
+        f"All Time High: <code>{total.total_ath:.4f}$</code>\n"
+        f"All Time Low: <code>{total.total_atl:.4f}$</code>"
     )
 
     return await message.reply(
         text=message_text,
-        reply_markup=inline_keyboard.exchanges()
+        reply_markup=inline_keyboard.exchanges(exchanges)
     )

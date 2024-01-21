@@ -25,9 +25,8 @@ async def price_message(
 
     exchanges_info = ExchangesInfoCRUD(session)
     exchanges = await exchanges_info.get_all()
-    await session.close()
 
-    price_text = "\n".join([f"{exchange.name}: <code>{exchange.price}$ ({exchange.price_change}%)</code>" for exchange in exchanges])
+    price_text = "\n".join([f"{exchange.name}: <code>{exchange.price}$ ({'+' if exchange.price_change >= 0 else ''}{exchange.price_change:.2f}%)</code>" for exchange in exchanges])
 
     return await message.reply(
         text=f"🐲 $DRAGO\n\n"
