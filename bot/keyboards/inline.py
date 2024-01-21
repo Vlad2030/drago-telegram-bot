@@ -50,6 +50,7 @@ class InlineKeyboards:
                 ),
             ],
             [
+                self.button(text="MEXC", url="https://www.mexc.com/exchange/DRAGO_USDT"),
                 self.button(text="DEX Screener", url="https://dexscreener.com/solana/GD6sCpWTmhmCPHZkza1a7JLNcqER3tuBnY3jqsHzL6v2"),
                 self.button(text="Birdeye", url="https://birdeye.so/token/GD6sCpWTmhmCPHZkza1a7JLNcqER3tuBnY3jqsHzL6v2?chain=solana"),
             ],
