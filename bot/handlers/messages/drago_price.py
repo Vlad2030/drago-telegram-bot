@@ -38,7 +38,7 @@ async def drago_price_worker(
             drago_price_text = (
                 f"{price_text}\n\n"
                 
-                f"24h Total Volume: <code>{beatifier(total.total_h24_volume_quote)}$ ({beatifier(total.total_h24_volume)} DRAGO)</code>\n"
+                f"24h Total Volume: <code>{beatifier(total.total_h24_volume)}$ ({beatifier(total.total_h24_volume_quote)} DRAGO)</code>\n"
                 f"24h Change: <code>{'+' if total.price_change > 0 else ''}{total.price_change:.2f}%</code>\n"
                 f"24h High: <code>{total.total_h24_high:.4f}$</code>\n"
                 f"24h Low: <code>{total.total_h24_low:.4f}$</code>\n"

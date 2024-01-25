@@ -32,8 +32,8 @@ async def update_prices() -> None:
                 price_change=dex_screnner_info.pairs[0].priceChange.h6,
                 price_h24_high=None,
                 price_h24_low=None,
-                h24_volume=dex_h24_volume,
-                h24_volume_quote=dex_screnner_info.pairs[0].volume.h24,
+                h24_volume=dex_screnner_info.pairs[0].volume.h24,
+                h24_volume_quote=dex_h24_volume,
             ),
         )
 
@@ -53,8 +53,8 @@ async def update_prices() -> None:
             ),
         )
 
-        total_h24_volume = dex_h24_volume + mexc_info.volume
-        total_h24_volume_quote = dex_screnner_info.pairs[0].volume.h24 + mexc_info.quote_volume
+        total_h24_volume = dex_screnner_info.pairs[0].volume.h24 + mexc_info.volume
+        total_h24_volume_quote = dex_h24_volume + mexc_info.quote_volume
         best_price = mexc_info.price if mexc_info.price > dex_price else dex_price
         worst_price = mexc_info.price if mexc_info.price < dex_price else dex_price
 
