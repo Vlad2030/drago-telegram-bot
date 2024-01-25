@@ -12,6 +12,8 @@ services:
     env_file:
       - .env
     restart: always
+    volumes:
+      - ./logs.log:/logs.log
 
   price-worker:
     container_name: price-worker
