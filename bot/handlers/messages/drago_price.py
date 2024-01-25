@@ -1,5 +1,4 @@
 import asyncio
-import datetime
 
 
 from aiogram import Router, types
@@ -24,15 +23,16 @@ async def drago_price_worker(
         inline_keyboard=InlineKeyboards(),
 ) -> types.Message:
     log_info.handler(__name__, type=message)
-    message_count = 0
 
     if message.from_user.id == int(BotConfig.DEV_TELEGRAM_USER_ID):
-        while True:
-            exchanges_info = ExchangesInfoCRUD(session)
-            total_info = TotalInfoCRUD(session)
+        exchanges_info = ExchangesInfoCRUD(session)
+        total_info = TotalInfoCRUD(session)
 
-            exchanges = await exchanges_info.get_all()
-            total = await total_info.get()
+        exchanges = await exchanges_info.get_all()
+        total = await total_info.get()
+
+        while True:
+            exchanges.sort(key=lambda ex: ex.price, reverse=True)
 
             price_text = "\n".join([f"{exchange.name}: <code>{exchange.price}$ ({'+' if exchange.price_change > 0 else ''}{exchange.price_change:.2f}%)</code>" for exchange in exchanges])
             drago_price_text = (
@@ -52,13 +52,7 @@ async def drago_price_worker(
                 reply_markup=inline_keyboard.exchanges(exchanges),
             )
 
-            message_count += 1
-
-            await message.answer(
-                text=f"Success!\n\n"
-                     f"Send {message_count} message, time: {datetime.datetime.now().strftime('%H:%M')}",
-                disable_notification=True,
-                reply_markup=inline_keyboard.ad(),
-            )
+            await session.refresh(total)
+            [await session.refresh(exchange) for exchange in exchanges]
 
             await asyncio.sleep(60.00)

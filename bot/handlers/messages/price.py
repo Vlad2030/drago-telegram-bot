@@ -26,6 +26,8 @@ async def price_message(
     exchanges_info = ExchangesInfoCRUD(session)
     exchanges = await exchanges_info.get_all()
 
+    exchanges.sort(key=lambda ex: ex.price, reverse=True)
+
     price_text = "\n".join([f"{exchange.name}: <code>{exchange.price:.4f}$ ({'+' if exchange.price_change >= 0 else ''}{exchange.price_change:.2f}%)</code>" for exchange in exchanges])
 
     return await message.reply(
