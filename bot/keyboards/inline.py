@@ -77,6 +77,6 @@ class InlineKeyboards:
             buttons.append([self.button(text=exchange.name, url=exchange.link)])
         buttons.append([self.button(
             text="$DRAGO price every minute",
-            url="https://t.me/drago_price",
+            url="https://t.me/+SHVYuSZILjM0NGJl",
         )])
         return self.keyboard(inline_keyboard=buttons)
